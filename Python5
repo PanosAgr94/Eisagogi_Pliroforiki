@@ -1,0 +1,31 @@
+import numpy as np
+import string
+
+
+# A function that converts list of words in array of strings:
+def listToString(s):   
+# initialize an empty string 
+  str1 = ""      
+# traverse in the string   
+  for ele in s:  
+    str1 += ele       
+ # return string   
+  return str1  
+
+# A function to Split string into characters 
+def split2(word): 
+    return [char for char in word]
+
+#main
+i=0
+s = open("demofile.txt", "r") #open file
+words=s.read().split(" "); #split words where " " is found
+words=[word.strip(string.punctuation) for word in words] #fix punctuation of the words
+for i in range(len(words)): #parse all words
+	words[i]=listToString(words[i]) #list to string 
+	if len(words[i])>3: #greater than 3 letters
+		a=split2(words[i]) #split with my func to char
+		a+=a[0]+'ay' #last letter=first letter
+		a[0]='' #first letter null. I didn't move char because join will eliminate first letter, so not necessary
+		words[i]=''.join(str(c) for c in a) #join letters again to string
+print(words)

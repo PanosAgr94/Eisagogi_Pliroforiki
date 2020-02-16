@@ -1,0 +1,23 @@
+#Assuming numbers are in this format 4 4 4 4
+
+
+with open('file.txt') as f:
+    array = [[int(x) for x in line.split()] for line in f] #read as int
+
+for i in range(len(array)):
+	array[i]=[str(x) for x in array[i]]#convert to str for easier use
+
+nmbr=int(input('Give 6 numbers : ')) #read int
+nmbr=str(nmbr) #convert it to string
+tetr=[[nmbr[0],nmbr[1],nmbr[2],nmbr[3]],[nmbr[1],nmbr[2],nmbr[3],nmbr[4]],[nmbr[2],nmbr[3],nmbr[4],nmbr[5]]] #create possible 4 in a row
+i=0;
+for j in range(len(array)): #compares for array
+	i=0;
+	while i<3: #itteration for tetrades
+		if tetr[i]==array[j]: #if a 4digit is same as an array 4digit print andbreak
+			print('There is')	
+			break
+		i+=1	
+	if i<3: break	#if i<3 means that while stoped so we have a 4digit so break for loop too
+else:
+	print('There is no')		

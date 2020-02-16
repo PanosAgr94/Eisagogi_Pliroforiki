@@ -1,0 +1,7 @@
+nmbr=int(input('Give number : '))
+
+nmbr=3*nmbr+1
+
+while nmbr >= 10:
+	  nmbr = sum(int(c) for c in str(nmbr)) #add digits. Int as a string.
+	  print(nmbr)

@@ -1,0 +1,29 @@
+#Uses twitterscraper function query_tweets_from_user, found here : https://github.com/taspinar/twitterscraper
+
+from twitterscraper import query_tweets_from_user
+import pandas as pd
+
+limit = 50 #limit of tweets
+
+
+user1=str(input('Give first user 1: '))
+user2=str(input('Give first user 2: '))
+sum1=0 #word sum
+sum2=0 #word sum
+user_1=query_tweets_from_user(user1,limit) #scraps tweets from user. Starts from latest tweet
+df = pd.DataFrame(t.__dict__ for t in user_1) #save them in dataframe
+count = df.text.str.split().str.len() #count words in dataframe's text for each tweet
+for i in range(0,len(count)): #sum the count for all  tweets
+	sum1+=count[i]
+
+
+user_2=query_tweets_from_user(user2,limit) #scraps tweets from other user
+df2 = pd.DataFrame(t.__dict__ for t in user_2) #save them in dataframe
+count2 = df2.text.str.split().str.len() #count words in dataframe's text for each tweet
+for i in range(0,len(count2)): #sum the count for all  tweets
+	sum2+=count2[i]
+
+if sum1>=sum2:
+	print('User : ',user1,' used ',sum1-sum2,' more words') #prints diference and who wrote more
+else:
+	print('User : ',user2,' used ',sum2-sum1,' more words')
